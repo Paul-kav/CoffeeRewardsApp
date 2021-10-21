@@ -7,20 +7,32 @@ namespace CoffeeRewardsApp
         {
         }
 
-        public string customerId;
-        public string emailAddress;
-        public string firstName;
-        public string lastName; 
+        public int CustomerId { get; private set; }
+        public string EmailAddress { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public int numberOfOrdersPlaced;
-        public double reward;
-        public int priceOfpurchasedItems;
-        public DateTime dateOfPurchase;
+        public int NumberOfOrdersPlaced { get; set; }
+        public double Reward { get; set; }
+        public int TotalSpent { get; set; }
+        public int PriceOfItemPurchased { get; set; }
+        public int  NumberOfItems { get; set; }
+
+        public void CalculateTotalPriceOfItemsPurchased()
+        {
+            int total = PriceOfItemPurchased * NumberOfItems; 
+        }
 
         public void CalculateRewards()
         {
-            double rewards = numberOfOrdersPlaced / reward;
-            Console.WriteLine($"{firstName} {lastName} got {reward} rewards.");
+            double rewards = NumberOfOrdersPlaced / Reward;
+            Console.WriteLine($"{FirstName} {LastName} got {Reward} rewards.");
         }
+
+        public void DisplayCustomerDetails()
+        {
+
+        }
+
     }
 }

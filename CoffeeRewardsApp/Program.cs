@@ -8,7 +8,11 @@ namespace CoffeeRewardsApp
         {
             Console.WriteLine("****** Welcome to my reards application ******");
 
-            Console.ReadLine();
+            Customer person = new Customer();
+            person.FirstName = "Paul";
+
+            person.CalculateRewards();
+            
         }
 
     }
