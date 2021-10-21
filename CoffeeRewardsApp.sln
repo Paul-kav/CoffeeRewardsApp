@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.11
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeRewardsApp", "CoffeeRewardsApp\CoffeeRewardsApp.csproj", "{326866DB-4091-41A3-B7B2-C2029C5A1D2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{326866DB-4091-41A3-B7B2-C2029C5A1D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{326866DB-4091-41A3-B7B2-C2029C5A1D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{326866DB-4091-41A3-B7B2-C2029C5A1D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{326866DB-4091-41A3-B7B2-C2029C5A1D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {813E6FD9-A7C2-474F-A951-35E02AB8B1D6}
+	EndGlobalSection
+EndGlobal
