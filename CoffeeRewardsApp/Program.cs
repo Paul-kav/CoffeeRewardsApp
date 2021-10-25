@@ -28,7 +28,7 @@ namespace CoffeeRewardsApp
             //}
             //customer.LastName = "Kavuma";
 
-            //paul.DisplayCustomerDetails();
+            paul.DisplayCustomerDetails();
             //double total = paul.CalculateTotalSpent();
             //paul.CalculateRewards();
             
