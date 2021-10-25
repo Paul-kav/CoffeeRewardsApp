@@ -1,17 +1,13 @@
 ﻿using System;
 namespace CoffeeRewardsApp
 {
-    public partial class Customer
+    public class Customer
     {
-
-
-        
-
         public int CustomerId { get; private set; }
         public string EmailAddress { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
+       
         //public CustomerType CustomerTyp;
 
         public int NumberOfOrdersPlaced { get; set; }
@@ -45,7 +41,7 @@ namespace CoffeeRewardsApp
 
         public void DisplayCustomerDetails()
         {
-            Console.WriteLine($"\nId: {CustomerId}\nFirst name: {FirstName}\nLast name: {LastName}\nEmail Address: {EmailAddress}\nRewards: {Points}\nCustomer Type: ");
+            Console.WriteLine($"\nId: {CustomerId}\nFirst name: {FirstName}\nLast name: {LastName}\nEmail Address: {EmailAddress}\nRewards: {Points}");
         }
 
     }
