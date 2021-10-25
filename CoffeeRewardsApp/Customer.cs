@@ -11,18 +11,19 @@ namespace CoffeeRewardsApp
         //public CustomerType CustomerTyp;
 
         public int NumberOfOrdersPlaced { get; set; }
-        public double Points { get; set; }
+        public double Rewards { get; set; }
         public int TotalSpent { get; set; }
         public int PriceOfItemPurchased { get; set; }
         public int NumberOfItems { get; set; }
+        public double RewardPoints { get; set; }
 
-        public Customer(int id, string firstName, string lastName, string email, double points)
+        public Customer(int id, string firstName, string lastName, string email, double rewards)
         {
             CustomerId = id;
             FirstName = firstName;
             LastName = lastName;
             EmailAddress = email;
-            Points = points;
+            Rewards = rewards;
             //CustomerTyp = customerTyp;
         }
 
@@ -35,13 +36,13 @@ namespace CoffeeRewardsApp
 
         public void CalculateRewards()
         {
-            double rewards = NumberOfOrdersPlaced / Points;
-            Console.WriteLine($"{FirstName} {LastName} got {Points} rewards.");
+            double rewards = NumberOfOrdersPlaced + NumberOfItems / RewardPoints;
+            Console.WriteLine($"{FirstName} {LastName} got {Rewards} rewards.");
         }
 
         public void DisplayCustomerDetails()
         {
-            Console.WriteLine($"\nId: {CustomerId}\nFirst name: {FirstName}\nLast name: {LastName}\nEmail Address: {EmailAddress}\nRewards: {Points}");
+            Console.WriteLine($"\nId: {CustomerId}\nFirst name: {FirstName}\nLast name: {LastName}\nEmail Address: {EmailAddress}\nRewards: {Rewards}");
         }
 
     }
