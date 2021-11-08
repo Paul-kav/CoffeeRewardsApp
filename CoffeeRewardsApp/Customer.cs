@@ -12,7 +12,7 @@ namespace CoffeeRewardsApp
 
         public int NumberOfOrdersPlaced { get; set; }
         public double Rewards { get; set; }
-        public int TotalSpent { get; set; }
+        //public int TotalSpent { get; set; }
         public int PriceOfItemPurchased { get; set; }
         public int NumberOfItems { get; set; }
         public double RewardPoints { get; set; }
@@ -27,11 +27,11 @@ namespace CoffeeRewardsApp
             //CustomerTyp = customerTyp;
         }
 
-        public double CalculateTotalSpent()
+        public double TotalSpent(double purchase)
         {
-            double totalPurchase = PriceOfItemPurchased * NumberOfItems;
+            NumberOfItems += PriceOfItemPurchased;
             
-            return totalPurchase;
+            return purchase;
         }
 
         public void CalculateRewards()
