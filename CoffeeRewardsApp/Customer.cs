@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 namespace CoffeeRewardsApp
 {
     public class Customer
@@ -16,6 +18,7 @@ namespace CoffeeRewardsApp
         public int PriceOfItemPurchased { get; set; }
         public int NumberOfItems { get; set; }
         public double RewardPoints { get; set; }
+        public List<double> purchases = new List<double>();
 
         public Customer(int id, string firstName, string lastName, string email, double rewards)
         {
@@ -27,11 +30,16 @@ namespace CoffeeRewardsApp
             //CustomerTyp = customerTyp;
         }
 
-        public double TotalSpent(double purchase)
+        public void AddPurchase(double purchase)
         {
-            NumberOfItems += PriceOfItemPurchased;
+            purchases.Add(purchase);
+        }
+
+
+        public double TotalSpent()
+        {
             
-            return purchase;
+            return purchases.Sum();
         }
 
         public void CalculateRewards()

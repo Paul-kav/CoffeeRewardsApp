@@ -40,13 +40,13 @@ namespace CoffeeRewardsApp
                         ChooseCustomer();
                         break;
                     case "2":
-                        TotalSpent();
+                        ShowTotalSpent();
                         break;
                     case "3":
-                        ShowRewards();
+                        ShowCustomerRwewards();
                         break;
                     case "4":
-                        CustomerDetails();
+                        DisplayCustomerInformation();
                         break;
                     case "6": break;
                     default:
@@ -59,6 +59,10 @@ namespace CoffeeRewardsApp
             Console.WriteLine("Thanks for using my application");
             Console.Read();
 
+            
+
+
+
 
 
             //Customer paul = new Customer(004, "Paul", "Kavuma", "paul@gmail.com", 12);
@@ -68,11 +72,31 @@ namespace CoffeeRewardsApp
             //peter.CalculateRewards();
             //peter.DisplayCustomerDetails();
 
-            
+
 
 
             //Console.ReadLine();
         }
+        private static void ChooseCustomer()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ShowTotalSpent()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowCustomerRwewards()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void DisplayCustomerInformation()
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

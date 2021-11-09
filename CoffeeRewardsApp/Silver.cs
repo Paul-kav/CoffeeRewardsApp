@@ -7,7 +7,7 @@ namespace CoffeeRewardsApp
         {
         }
 
-        private void CalcReward()
+        public void CalcReward()
         {
             double rewards = NumberOfOrdersPlaced + NumberOfItems / RewardPoints * 1;
             Console.WriteLine($"{FirstName} {LastName} got {RewardPoints} rewards.");
