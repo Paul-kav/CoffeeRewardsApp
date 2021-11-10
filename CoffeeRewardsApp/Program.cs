@@ -6,7 +6,7 @@ namespace CoffeeRewardsApp
     class Program
     {
 
-        private static List<Customer> customer = new List<Customer>();
+        private static List<Customer> customers = new List<Customer>();
 
         static void Main(string[] args)
 
@@ -21,9 +21,9 @@ namespace CoffeeRewardsApp
 
             do
             {
-                Console.WriteLine("*******************");
+                Console.WriteLine("***************************");
                 Console.WriteLine("* Select from the options *");
-                Console.WriteLine("********************");
+                Console.WriteLine("***************************");
                 Console.ForegroundColor = ConsoleColor.White;
 
                 Console.WriteLine("1: Choose Customer");
@@ -37,7 +37,7 @@ namespace CoffeeRewardsApp
                 switch (userSelection)
                 {
                     case "1":
-                        ChooseCustomer();
+                        RecordCustomer();
                         break;
                     case "2":
                         ShowTotalSpent();
@@ -77,9 +77,29 @@ namespace CoffeeRewardsApp
 
             //Console.ReadLine();
         }
-        private static void ChooseCustomer()
+        private static void RecordCustomer()
         {
-            throw new NotImplementedException();
+            Console.Write("Creating Customer");
+            //Console.WriteLine("Enter the customer Id: ");
+            //double id = double.Parse(Console.ReadLine());
+
+            Console.Write("Enter the customer's first name: ");
+            string firstname = Console.ReadLine();
+
+            Console.Write("Enter the customer's last name: ");
+            string lastname = Console.ReadLine();
+
+            Console.Write("Enter customer email address: ");
+            string email = Console.ReadLine();
+
+            Console.Write("Enter customer rewards: ");
+            string reward = Console.ReadLine();
+            double rewards = double.Parse(reward);
+
+            Customer customer = new Customer(firstname, lastname, email, rewards);
+            customers.Add(customer);
+
+
         }
 
         private static void ShowTotalSpent()
@@ -87,7 +107,7 @@ namespace CoffeeRewardsApp
             throw new NotImplementedException();
         }
 
-        private void ShowCustomerRwewards()
+        private static void ShowCustomerRwewards()
         {
             throw new NotImplementedException();
         }

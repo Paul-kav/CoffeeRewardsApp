@@ -5,7 +5,7 @@ namespace CoffeeRewardsApp
 {
     public class Customer
     {
-        public int CustomerId { get; private set; }
+        //public int CustomerId { get; private set; }
         public string EmailAddress { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,15 +14,15 @@ namespace CoffeeRewardsApp
 
         public int NumberOfOrdersPlaced { get; set; }
         public double Rewards { get; set; }
-        //public int TotalSpent { get; set; }
+        //public double TotalSpent { get; set; }
         public int PriceOfItemPurchased { get; set; }
         public int NumberOfItems { get; set; }
         public double RewardPoints { get; set; }
         public List<double> purchases = new List<double>();
 
-        public Customer(int id, string firstName, string lastName, string email, double rewards)
+        public Customer(string firstName, string lastName, string email, double rewards)
         {
-            CustomerId = id;
+           // CustomerId = id;
             FirstName = firstName;
             LastName = lastName;
             EmailAddress = email;
@@ -50,7 +50,7 @@ namespace CoffeeRewardsApp
 
         public void DisplayCustomerDetails()
         {
-            Console.WriteLine($"\nId: {CustomerId}\nFirst name: {FirstName}\nLast name: {LastName}\nEmail Address: {EmailAddress}\nRewards: {Rewards}");
+            Console.WriteLine($"\nId: {FirstName}\nLast name: {LastName}\nEmail Address: {EmailAddress}\nRewards: {Rewards}");
         }
 
     }

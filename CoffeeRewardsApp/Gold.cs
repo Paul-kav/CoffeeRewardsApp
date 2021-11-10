@@ -6,7 +6,7 @@ namespace CoffeeRewardsApp
         private double rewardPoints;
         
 
-        public Gold(int id, string firstName, string lastName, string email, double rewards) : base(id, firstName, lastName, email, rewards)
+        public Gold(string firstName, string lastName, string email, double rewards) : base(firstName, lastName, email, rewards)
         { }
 
         public new void CalculateRewards()

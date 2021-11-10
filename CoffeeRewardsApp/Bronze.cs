@@ -3,7 +3,7 @@ namespace CoffeeRewardsApp
 {
     public class Bronze : Customer
     {
-        public Bronze(int id, string firstName, string lastName, string email, double points) : base(id, firstName, lastName, email, points)
+        public Bronze(string firstName, string lastName, string email, double points) : base(firstName, lastName, email, points)
         {
         }
 
