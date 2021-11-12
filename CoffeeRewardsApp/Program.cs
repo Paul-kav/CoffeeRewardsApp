@@ -21,12 +21,14 @@ namespace CoffeeRewardsApp
 
             do
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
+
                 Console.WriteLine("***************************");
                 Console.WriteLine("* Select from the options *");
                 Console.WriteLine("***************************");
                 Console.ForegroundColor = ConsoleColor.White;
 
-                Console.WriteLine("1: Choose Customer");
+                Console.WriteLine("1: Enter Customer");
                 Console.WriteLine("2: Show total spent");
                 Console.WriteLine("3: Show customer rewards");
                 Console.WriteLine("4: Display customer details");
@@ -58,24 +60,7 @@ namespace CoffeeRewardsApp
 
             Console.WriteLine("Thanks for using my application");
             Console.Read();
-
-            
-
-
-
-
-
-            //Customer paul = new Customer(004, "Paul", "Kavuma", "paul@gmail.com", 12);
-            //Gold peter = new Gold(005, "Peter", "Khan", "peterkhan@me.com", 2);
-
-            //paul.DisplayCustomerDetails();
-            //peter.CalculateRewards();
-            //peter.DisplayCustomerDetails();
-
-
-
-
-            //Console.ReadLine();
+    
         }
         private static void RecordCustomer()
         {
@@ -99,12 +84,26 @@ namespace CoffeeRewardsApp
             Customer customer = new Customer(firstname, lastname, email, rewards);
             customers.Add(customer);
 
-
+            Console.WriteLine("Employee created!\n\n");
         }
 
         private static void ShowTotalSpent()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Select a customer");
+            for (int i = 1; 1 <= customers.Count; i++)
+            {
+                Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
+            }
+
+            int selection = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the customer's total spent: ");
+            int purchase = int.Parse(Console.ReadLine());
+
+            Customer selectedCustomer = customers[selection - 1];
+            double purchases = selectedCustomer.TotalSpent(purchase);
+            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {purchases} dollars.\n\n");
+
         }
 
         private static void ShowCustomerRwewards()

@@ -36,7 +36,7 @@ namespace CoffeeRewardsApp
         }
 
 
-        public double TotalSpent()
+        public double TotalSpent(int purchase)
         {
             
             return purchases.Sum();
