@@ -7,10 +7,10 @@ namespace CoffeeRewardsApp
         {
         }
 
-        public void CalcReward()
-        {
-            double rewards = NumberOfOrdersPlaced + NumberOfItems / RewardPoints * 0.25;
-            Console.WriteLine($"{FirstName} {LastName} got {RewardPoints} rewards.");
-        }
+        //public void CalcReward()
+        //{
+        //    double rewards = NumberOfOrdersPlaced + NumberOfItems / RewardPoints * 0.25;
+        //    Console.WriteLine($"{FirstName} {LastName} got {RewardPoints} rewards.");
+        //}
     }
 }

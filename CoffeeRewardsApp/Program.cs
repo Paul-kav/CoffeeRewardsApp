@@ -42,10 +42,10 @@ namespace CoffeeRewardsApp
                         RecordCustomer();
                         break;
                     case "2":
-                        ShowTotalSpent();
+                        CalculateTotalSpent();
                         break;
                     case "3":
-                        ShowCustomerRwewards();
+                        CalculateCustomerRewards();
                         break;
                     case "4":
                         DisplayCustomerInformation();
@@ -59,7 +59,7 @@ namespace CoffeeRewardsApp
             while (userSelection != "6");
 
             Console.WriteLine("Thanks for using my application");
-            Console.Read();
+            Console.ReadLine();
     
         }
         private static void RecordCustomer()
@@ -87,33 +87,45 @@ namespace CoffeeRewardsApp
             Console.WriteLine("Employee created!\n\n");
         }
 
-        private static void ShowTotalSpent()
+        private static void CalculateTotalSpent()
         {
             Console.WriteLine("Select a customer");
-            for (int i = 1; 1 <= customers.Count; i++)
+            for (int i = 1; i <= customers.Count; i++)
             {
                 Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
             }
 
             int selection = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter the customer's total spent: ");
+            Console.Write("Enter the customer's purchases: ");
             int purchase = int.Parse(Console.ReadLine());
 
             Customer selectedCustomer = customers[selection - 1];
-            double purchases = selectedCustomer.TotalSpent(purchase);
-            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {purchases} dollars.\n\n");
+            int priceOfItemPurchased = selectedCustomer.AddPurchase(purchase);
+            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {priceOfItemPurchased} dollars.\n\n");
 
         }
 
-        private static void ShowCustomerRwewards()
+        private static void CalculateCustomerRewards()
         {
-            throw new NotImplementedException();
+            //Console.WriteLine("Select a customer");
+            //for (int i = 1; i <= customers.Count; i++)
+            //{
+            //    Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
+            //}
+
+            //int selection = int.Parse(Console.ReadLine());
+
+            //Customer selectedCustomer = customers[selection - 1];
+            //int itemsPurchased;
+            //double rewards = selectedCustomer.CalculateRewards(out rewards);
+
+            //Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has {rewards}. {itemsPurchased}");
         }
 
         private static void DisplayCustomerInformation()
         {
-            throw new NotImplementedException();
+            //();
         }
 
 
