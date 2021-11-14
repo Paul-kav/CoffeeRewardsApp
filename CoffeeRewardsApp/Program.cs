@@ -101,8 +101,9 @@ namespace CoffeeRewardsApp
             int purchase = int.Parse(Console.ReadLine());
 
             Customer selectedCustomer = customers[selection - 1];
-            int priceOfItemPurchased = selectedCustomer.AddPurchase(purchase);
-            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {priceOfItemPurchased} dollars.\n\n");
+            selectedCustomer.AddPurchase(purchase);
+            double purchases = selectedCustomer.TotalSpent();
+            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {purchases} dollars.\n\n");
 
         }
 
