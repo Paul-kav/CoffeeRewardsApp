@@ -45,13 +45,13 @@ namespace CoffeeRewardsApp
             return Purchases.Sum();
         }
 
-        public double CalculateRewards()
+        public void CalculateRewards()
         {
             double rewards = PriceOfItemPurchased + NumberOfItems / RewardPoints;
             Console.WriteLine($"{FirstName} {LastName} got {Rewards} rewards.");
-            PriceOfItemPurchased = 0;
-            itemsPurchased = PriceOfItemPurchased;
-            return rewards;
+            //PriceOfItemPurchased = 0;
+            //itemsPurchased = PriceOfItemPurchased;
+            //return rewards;
         }
 
         //public void DisplayCustomerDetails()

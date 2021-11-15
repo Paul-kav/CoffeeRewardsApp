@@ -3,7 +3,7 @@ namespace CoffeeRewardsApp
 {
     public class Gold : Customer
     {
-        private double rewardPoints;
+        //private double rewardPoints;
         
 
         public Gold(string firstName, string lastName, string email, double rewards) : base(firstName, lastName, email, rewards)
