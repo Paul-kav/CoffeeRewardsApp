@@ -3,13 +3,13 @@ namespace CoffeeRewardsApp
 {
     public class Gold : Customer
     {
-        //private double rewardPoints;
+        private double rewardPoints;
         
 
         public Gold(string firstName, string lastName, string email, double rewards) : base(firstName, lastName, email, rewards)
         { }
 
-        public new void CalculateRewards()
+        public void CalcReward()
         {
             var reward = RewardPoints + 4;
             RewardPoints = reward;

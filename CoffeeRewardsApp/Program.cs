@@ -67,16 +67,9 @@ namespace CoffeeRewardsApp
     
         }
 
-        //private static void CalculateCustomerRewards()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         private static void RecordCustomer()
         {
             Console.Write("Creating Customer");
-            //Console.WriteLine("Enter the customer Id: ");
-            //double id = double.Parse(Console.ReadLine());
 
             Console.Write("Enter the customer's first name: ");
             string firstname = Console.ReadLine();
@@ -98,12 +91,7 @@ namespace CoffeeRewardsApp
         }
 
         private static void CalculateTotalSpent()
-        {
-            //Console.WriteLine("Select a customer");
-            //for (int i = 1; i <= customers.Count; i++)
-            //{
-            //    Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
-            //}
+        { 
 
             int selection = int.Parse(Console.ReadLine()) - 1;
 
@@ -149,10 +137,18 @@ namespace CoffeeRewardsApp
             }
             else if (selectedCustomer.NumberOfOrdersPlaced > 5)
             {
-                //add logic for gold -> Add to gold then remove from silver
+                //find the gold customer information and update it to gold list
+                var customerToUpdate = goldCustomers.Find(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName)
+                ?? new Gold(selectedCustomer.FirstName, selectedCustomer.LastName, selectedCustomer.EmailAddress, selectedCustomer.Rewards);
+                goldCustomers.Add(customerToUpdate);
 
-                //need to find the silver data and remove it
+                //silver information found and removed from the sliver list
+                var silverInfo = silverCustomers.Find(x => x.FirstName == customerToUpdate.FirstName && x.LastName == selectedCustomer.LastName);
+                silverCustomers.Remove(silverInfo);
+                customerToUpdate.CalcReward();
+                
             }
+            
         }
 
         private static RewardLevelEnum FindCustomerRewardLevel(Customer selectedCustomer)
@@ -169,29 +165,11 @@ namespace CoffeeRewardsApp
             return rewardLevel;
         }
 
-        //private static CalculateCustomerRewards()
-        //{
-
-        //    Console.WriteLine("Select a customer");
-        //    for (int i = 1; i <= customers.Count; i++)
-        //    {
-        //        Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
-        //    }
-
-        //    int selection = int.Parse(Console.ReadLine());
-
-        //    Customer selectedCustomer = customers[selection - 1];
-        //    int itemsPurchased;
-        //    double rewards = selectedCustomer.CalculateRewards(out rewards);
-
-        //    Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has {rewards}. {itemsPurchased}");
-        //}
 
         private static void DisplayCustomerInformation()
         {
-            //();
+            throw new NotImplementedException();
         }
-
 
     }
 }
