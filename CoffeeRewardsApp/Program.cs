@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CoffeeRewardsApp
 {
@@ -7,6 +8,9 @@ namespace CoffeeRewardsApp
     {
 
         private static List<Customer> customers = new List<Customer>();
+        private static List<Bronze> bronzeCustomers = new List<Bronze>();
+        private static List<Silver> silverCustomers = new List<Silver>();
+        private static List<Gold> goldCustomers = new List<Gold>();
 
         static void Main(string[] args)
 
@@ -89,40 +93,107 @@ namespace CoffeeRewardsApp
 
         private static void CalculateTotalSpent()
         {
-            Console.WriteLine("Select a customer");
-            for (int i = 1; i <= customers.Count; i++)
-            {
-                Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
-            }
-
-            int selection = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter the customer's purchases: ");
-            int purchase = int.Parse(Console.ReadLine());
-
-            Customer selectedCustomer = customers[selection - 1];
-            selectedCustomer.AddPurchase(purchase);
-            double purchases = selectedCustomer.TotalSpent();
-            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {purchases} dollars.\n\n");
-
-        }
-
-        private static void CalculateCustomerRewards()
-        {
             //Console.WriteLine("Select a customer");
             //for (int i = 1; i <= customers.Count; i++)
             //{
             //    Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
             //}
 
-            //int selection = int.Parse(Console.ReadLine());
+            int selection = int.Parse(Console.ReadLine()) - 1;
 
-            //Customer selectedCustomer = customers[selection - 1];
-            //int itemsPurchased;
-            //double rewards = selectedCustomer.CalculateRewards(out rewards);
+            Console.Write("Enter the customer's purchases: ");
+            int purchase = int.Parse(Console.ReadLine());
 
-            //Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has {rewards}. {itemsPurchased}");
+            Customer selectedCustomer = customers[selection - 1];
+            selectedCustomer.AddPurchase(purchase);
+            selectedCustomer.NumberOfOrdersPlaced++;
+            CalculateCustomerRewards(selectedCustomer);
+            double purchases = selectedCustomer.TotalSpent();
+            var rewardLevel = FindCustomerRewardLevel(selectedCustomer).ToString();
+            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {purchases} dollars.\n\n");
+
         }
+
+        private static object FindCustomerRewardLevel(Customer selectedCustomer)
+        {
+            var rewardLevel = RewardLevelEnum.New;
+
+            if (bronzeCustomers.Any(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName))
+                rewardLevel = RewardLevelEnum.Bronze;
+            else if (silverCustomers.Any(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName))
+                rewardLevel = RewardLevelEnum.Silver;
+            else if (goldCustomers.Any(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName))
+                rewardLevel = RewardLevelEnum.Gold;
+
+            return rewardLevel;
+           
+        }
+
+        private static void CalculateCustomerRewards(Customer selectedCustomer)
+        {
+            if (selectedCustomer.NumberOfOrdersPlaced > 1 && selectedCustomer.NumberOfOrdersPlaced < 4)
+            {
+                var customerToUpdate = bronzeCustomers.Find(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName)
+                    ?? new Bronze(selectedCustomer.FirstName, selectedCustomer.LastName, selectedCustomer.EmailAddress, selectedCustomer.Rewards);
+
+                if (bronzeCustomers.All(x => x.FirstName != selectedCustomer.FirstName && x.LastName != selectedCustomer.LastName))
+                    bronzeCustomers.Add(customerToUpdate);
+                //we don't remove customers from the base list since we need a way to select them.
+                customerToUpdate.CalcReward();
+                //need to make sure the base customer reflects the changes in their reward version
+                selectedCustomer.RewardPoints = customerToUpdate.RewardPoints;
+            }
+            else if (selectedCustomer.NumberOfOrdersPlaced > 3 && selectedCustomer.NumberOfOrdersPlaced < 6)
+            {
+                var customerToUpdate = silverCustomers.Find(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName)
+                   ?? new Silver(selectedCustomer.FirstName, selectedCustomer.LastName, selectedCustomer.EmailAddress, selectedCustomer.Rewards);
+
+                silverCustomers.Add(customerToUpdate);
+                //need to find the bronze data and remove it
+                var bronzeInfo = bronzeCustomers.Find(x => x.FirstName == customerToUpdate.FirstName && x.LastName == customerToUpdate.LastName);
+                bronzeCustomers.Remove(bronzeInfo);
+
+                customerToUpdate.CalcReward();
+            }
+            else if (selectedCustomer.NumberOfOrdersPlaced > 5)
+            {
+                //add logic for gold -> Add to gold then remove from silver
+
+                //need to find the silver data and remove it
+            }
+        }
+
+        //private static RewardLevelEnum FindCustomerRewardLevel(Customer selectedCustomer)
+        //{
+        //    var rewardLevel = RewardLevelEnum.New;
+
+        //    if (bronzeCustomers.Any(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName))
+        //        rewardLevel = RewardLevelEnum.Bronze;
+        //    else if (silverCustomers.Any(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName))
+        //        rewardLevel = RewardLevelEnum.Silver;
+        //    else if (goldCustomers.Any(x => x.FirstName == selectedCustomer.FirstName && x.LastName == selectedCustomer.LastName))
+        //        rewardLevel = RewardLevelEnum.Gold;
+
+        //    return rewardLevel;
+        //}
+
+        //private static CalculateCustomerRewards()
+        //{
+
+        //    //Console.WriteLine("Select a customer");
+        //    //for (int i = 1; i <= customers.Count; i++)
+        //    //{
+        //    //    Console.WriteLine($"{i}. {customers[i - 1].FirstName} {customers[i - 1].LastName}");
+        //    //}
+
+        //    //int selection = int.Parse(Console.ReadLine());
+
+        //    //Customer selectedCustomer = customers[selection - 1];
+        //    //int itemsPurchased;
+        //    //double rewards = selectedCustomer.CalculateRewards(out rewards);
+
+        //    //Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has {rewards}. {itemsPurchased}");
+        //}
 
         private static void DisplayCustomerInformation()
         {
