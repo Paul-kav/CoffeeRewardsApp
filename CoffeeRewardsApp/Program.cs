@@ -95,14 +95,26 @@ namespace CoffeeRewardsApp
             Console.Write("Enter customer email address: ");
             string email = Console.ReadLine();
 
-            Console.Write("Enter customer rewards: ");
-            string reward = Console.ReadLine();
-            double rewards = double.Parse(reward);
+            var rewards = EnterCustomerRewards();
 
             Customer customer = new Customer(firstname, lastname, email, rewards);
             customers.Add(customer);
 
-            Console.WriteLine("Employee created!\n\n");
+            Console.WriteLine("Customer created!\n\n");
+        }
+
+        private static double EnterCustomerRewards()
+        {
+            Console.Write("Enter customer rewards: ");
+            string reward = Console.ReadLine();
+            double rewards;
+            if (double.TryParse(reward, out rewards))
+            { }
+            else
+                EnterCustomerRewards();
+
+            return rewards;
+
         }
 
         private static void CalculateTotalSpent()
