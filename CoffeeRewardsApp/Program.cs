@@ -49,7 +49,7 @@ namespace CoffeeRewardsApp
                         CalculateTotalSpent();
                         break;
                     case "3":
-                        CalculateCustomerRewards();
+                        ShowCustomerRewards();
                         break;
                     case "4":
                         DisplayCustomerInformation();
@@ -65,6 +65,15 @@ namespace CoffeeRewardsApp
             Console.WriteLine("Thanks for using my application");
             Console.ReadLine();
     
+        }
+
+        private static void ShowCustomerRewards()
+        {
+            //select the customer
+
+            //show the selected customer's reward level
+            //show the selected customer's reward points
+            throw new NotImplementedException();
         }
 
         private static void RecordCustomer()
@@ -91,8 +100,8 @@ namespace CoffeeRewardsApp
         }
 
         private static void CalculateTotalSpent()
-        { 
-
+        {
+            SelectCustomer();
             int selection = int.Parse(Console.ReadLine()) - 1;
 
             Console.Write("Enter the customer's purchases: ");
@@ -107,6 +116,15 @@ namespace CoffeeRewardsApp
             Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has spent {purchases} dollars.\n\n");
             Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has earned {selectedCustomer.RewardPoints} reward points.\n\n");
             Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} is a {rewardLevel} customer.\n\n");
+        }
+
+        private static void SelectCustomer()
+        {
+            Console.WriteLine("Select a customer: ");
+            for (int i = 0; i < customers.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {customers[i].FirstName} {customers[i].LastName}");
+            }
         }
 
         private static void CalculateCustomerRewards(Customer selectedCustomer)
@@ -131,7 +149,9 @@ namespace CoffeeRewardsApp
                 silverCustomers.Add(customerToUpdate);
                 //need to find the bronze data and remove it
                 var bronzeInfo = bronzeCustomers.Find(x => x.FirstName == customerToUpdate.FirstName && x.LastName == customerToUpdate.LastName);
-                bronzeCustomers.Remove(bronzeInfo);
+
+                if (bronzeInfo != null)
+                    bronzeCustomers.Remove(bronzeInfo);
 
                 customerToUpdate.CalcReward();
             }
@@ -144,7 +164,10 @@ namespace CoffeeRewardsApp
 
                 //silver information found and removed from the sliver list
                 var silverInfo = silverCustomers.Find(x => x.FirstName == customerToUpdate.FirstName && x.LastName == selectedCustomer.LastName);
-                silverCustomers.Remove(silverInfo);
+
+                if (silverInfo != null)
+                    silverCustomers.Remove(silverInfo);
+
                 customerToUpdate.CalcReward();
                 
             }
