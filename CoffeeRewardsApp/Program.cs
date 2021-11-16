@@ -203,7 +203,14 @@ namespace CoffeeRewardsApp
 
         private static void DisplayCustomerInformation()
         {
-            throw new NotImplementedException();
+            //select customer
+            var customerinfo = SelectCustomer();
+
+            //display the customer's information
+            Console.WriteLine($"Customer's first name is: {customerinfo.FirstName}");
+            Console.WriteLine($"Customer's last name is: {customerinfo.LastName}");
+            Console.WriteLine($"Customer's emailaddress is: {customerinfo.EmailAddress}");
+            
         }
 
     }
