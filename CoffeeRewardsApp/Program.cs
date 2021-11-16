@@ -70,10 +70,16 @@ namespace CoffeeRewardsApp
         private static void ShowCustomerRewards()
         {
             //select the customer
-
+            var selectedCustomer = SelectCustomer();
+            
             //show the selected customer's reward level
+            var customerRewardLevel = FindCustomerRewardLevel(selectedCustomer).ToString();
+
             //show the selected customer's reward points
-            throw new NotImplementedException();
+            var customerRewardPoints = selectedCustomer.RewardPoints;
+
+            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} is a {customerRewardLevel} customer.");
+            Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} has earned {customerRewardPoints} reward points.");
         }
 
         private static void RecordCustomer()
@@ -101,13 +107,14 @@ namespace CoffeeRewardsApp
 
         private static void CalculateTotalSpent()
         {
-            SelectCustomer();
-            int selection = int.Parse(Console.ReadLine()) - 1;
+
+            var selectedCustomer = SelectCustomer();
+            
 
             Console.Write("Enter the customer's purchases: ");
             int purchase = int.Parse(Console.ReadLine());
 
-            Customer selectedCustomer = customers[selection];
+            
             selectedCustomer.AddPurchase(purchase);
             selectedCustomer.NumberOfOrdersPlaced++;
             CalculateCustomerRewards(selectedCustomer);
@@ -118,13 +125,17 @@ namespace CoffeeRewardsApp
             Console.WriteLine($"{selectedCustomer.FirstName} {selectedCustomer.LastName} is a {rewardLevel} customer.\n\n");
         }
 
-        private static void SelectCustomer()
+        private static Customer SelectCustomer()
         {
             Console.WriteLine("Select a customer: ");
             for (int i = 0; i < customers.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {customers[i].FirstName} {customers[i].LastName}");
             }
+
+            int selection = int.Parse(Console.ReadLine()) - 1;
+            return customers[selection]; 
+
         }
 
         private static void CalculateCustomerRewards(Customer selectedCustomer)
@@ -154,6 +165,7 @@ namespace CoffeeRewardsApp
                     bronzeCustomers.Remove(bronzeInfo);
 
                 customerToUpdate.CalcReward();
+                selectedCustomer.RewardPoints = customerToUpdate.RewardPoints;
             }
             else if (selectedCustomer.NumberOfOrdersPlaced > 5)
             {
@@ -169,7 +181,7 @@ namespace CoffeeRewardsApp
                     silverCustomers.Remove(silverInfo);
 
                 customerToUpdate.CalcReward();
-                
+                selectedCustomer.RewardPoints = customerToUpdate.RewardPoints;
             }
             
         }
